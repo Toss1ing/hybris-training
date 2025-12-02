@@ -1,0 +1,9 @@
+INSERT_UPDATE BandDetails; code[unique = true]; listeners; topCountryFroSales; rating
+                         ; BD001              ; 50000000 ; UK                ; 4
+                         ; BD002              ; 30000000 ; UK                ; 5
+                         ; BD003              ; 150000   ; USA               ; 10
+
+INSERT_UPDATE Band; code[unique = true]; name        ; history                                    ; albumSales; bandDetails(code); socialMediaLinks                                              ; albumSet
+                  ; B001               ; The Beatles ; Legendary British rock band formed in 1960 ; 600000000 ; BD001            ; FB->https://thebeatlesFaceBook, TW->https://thebeatlesTwitter ; albumName1, albumName2
+                  ; B002               ; Queen       ; Iconic British rock band formed in 1970    ; 300000000 ; BD002            ; FB->https://queenFaceBook, IG->https://queenInstagram         ; albumName1, albumName2
+                  ; B003               ; 4nWay       ; The best raper in the world                ; 20000     ; BD003            ; FB->https://4nWatFaceBook, TW->https://4nWayTwitter           ; 4nWay, FRIENDS

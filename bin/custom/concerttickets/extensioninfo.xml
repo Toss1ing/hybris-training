@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    <extension abstractclassprefix="Generated" classprefix="Concerttickets" jaloLogicFree="true" managername="ConcertticketsManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="concerttickets" usemaven="false">
+        <requires-extension name="concerttours"/>
+        <coremodule generated="true" manager="org.training.jalo.ConcertticketsManager" packageroot="org.training"/>
+        <webmodule jspcompile="false" webroot="/concerttickets"/>
+    </extension>
+</extensioninfo>
