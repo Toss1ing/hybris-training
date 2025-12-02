@@ -18,6 +18,7 @@
                     <persistence type="property" />
                 </attribute>
                 <attribute qualifier="concert" type="Concert">
+                    <description>concert type</description>
                     <modifiers read="true" write="true" search="true"/>
                     <persistence type="property"/>
                 </attribute>
@@ -26,7 +27,7 @@
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="ticketCount" type="java.lang.Integer">
-                    <description>price of ticket</description>
+                    <description>count of tickets</description>
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="ticketStatus" type="TicketStatus">

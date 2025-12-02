@@ -74,9 +74,11 @@
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="socialMediaLinks" type="SocialMediaLinks">
+                    <description>social media links</description>
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="albumSet" type="CustomStringSet">
+                    <description>set of albums name</description>
                     <persistence type="property"/>
                 </attribute>
             </attributes>
@@ -107,7 +109,7 @@
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="listeners" type="java.lang.Double">
-                    <description>count listeners</description>
+                    <description>count of listeners</description>
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="topCountryFroSales" type="java.lang.String">
