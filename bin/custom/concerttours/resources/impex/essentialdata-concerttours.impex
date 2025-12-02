@@ -1,0 +1,4 @@
+INSERT_UPDATE MusicType; code[unique = true]
+    ; RAP
+    ; CLASICALMUSIC
+    ; ROCK

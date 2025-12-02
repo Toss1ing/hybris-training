@@ -1,0 +1,7 @@
+INSERT_UPDATE Tickets; code[unique = true]; price ; ticketCount; ticketStatus(code)
+                     ; T001               ; 150.0 ; 100        ; VIP
+                     ; T002               ; 100.0 ; 200        ; REGULAR
+                     ; T003               ; 200.0 ; 50         ; VIP
+                     ; T004               ; 120.0 ; 150        ; REGULAR
+                     ; T005               ; 180.0 ; 75         ; VIP
+                     ; T006               ; 110.0 ; 180        ; REGULAR
