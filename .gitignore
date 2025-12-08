@@ -9,7 +9,6 @@
 !/config/localextensions.xml
 /bin/custom/**/web/**
 /bin/custom/**/gensrc/**
-/bin/custom/**/testsrc/**
 
 **/.externalToolBuilders
 **/.idea
