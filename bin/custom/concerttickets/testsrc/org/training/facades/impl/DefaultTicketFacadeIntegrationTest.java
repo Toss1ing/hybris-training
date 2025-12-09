@@ -60,20 +60,6 @@ public class DefaultTicketFacadeIntegrationTest extends ServicelayerTransactiona
         assertEquals(TICKET_COUNT, data.getTicketCount());
     }
 
-    @Test
-    public void testGetTicketByCode() {
-        TicketData data = defaultTicketFacade.getTicket(TICKET_CODE);
-        assertNotNull(data);
-        assertEquals(TICKET_CODE, data.getId());
-        assertEquals(TICKET_PRICE, data.getPrice());
-        assertEquals(TICKET_COUNT, data.getTicketCount());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetTicketByCodeNull() {
-        defaultTicketFacade.getTicket(null);
-    }
-
     @After
     public void teardown() {
     }

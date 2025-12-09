@@ -14,6 +14,8 @@
         <property name = "albumsSold" type = "Long" />
         <property name = "genres" type="java.util.List&lt;String&gt;"/>
         <property name = "tours" type="java.util.List&lt;org.training.data.TourSummaryData&gt;"/>
+        <property name="socialMediaLinks" type="java.util.Map&lt;String, String&gt;"/>
+        <property name="albumSet" type="java.util.Set&lt;String&gt;"/>
     </bean>
     <bean class = "org.training.data.ConcertSummaryData">
         <description >Data object for a concert summary</description>

@@ -10,26 +10,10 @@ import java.util.List;
 
 public class DefaultTicketFacade implements TicketFacade {
 
-    private static final String TICKET_CODE_NULL_EXCEPTION_MESSAGE = "ticketCode cannot be null";
     private final TicketService ticketService;
 
     public DefaultTicketFacade(final TicketService ticketService) {
         this.ticketService = ticketService;
-    }
-
-    @Override
-    public TicketData getTicket(final String code) {
-        if (code == null) {
-            throw new IllegalArgumentException(TICKET_CODE_NULL_EXCEPTION_MESSAGE);
-        }
-
-        TicketsModel ticket = ticketService.getTicketsByCode(code);
-
-        if (ticket == null) {
-            return null;
-        }
-
-        return mapToTicketData(ticket);
     }
 
     @Override

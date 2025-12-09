@@ -47,19 +47,4 @@ public class DefaultTicketFacadeUnitTest {
         Assert.assertEquals(TICKET_PRICE, data.getPrice());
         Assert.assertEquals(TICKET_COUNT, data.getTicketCount());
     }
-
-    @Test
-    public void testGetTicketByCode() {
-        when(ticketService.getTicketsByCode(TICKET_CODE)).thenReturn(ticketModel);
-        TicketData data = ticketFacade.getTicket(TICKET_CODE);
-        Assert.assertNotNull(data);
-        Assert.assertEquals(TICKET_CODE, data.getId());
-        Assert.assertEquals(TICKET_PRICE, data.getPrice());
-        Assert.assertEquals(TICKET_COUNT, data.getTicketCount());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetTicketByCodeNull() {
-        ticketFacade.getTicket(null);
-    }
 }

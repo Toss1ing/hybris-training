@@ -1,14 +1,12 @@
 package org.training.service.impl;
 
 import de.hybris.bootstrap.annotations.UnitTest;
-import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import org.junit.Before;
 import org.junit.Test;
 import org.training.daos.TicketDAO;
 import org.training.model.TicketsModel;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -44,23 +42,5 @@ public class DefaultTicketServiceUnitTest {
 
         assertEquals("We should find one", 1, result.size());
         assertEquals("And should equals what the mock returned", ticketModel, result.get(0));
-    }
-
-    @Test
-    public void testGetTicketByCode() {
-        when(ticketDAO.findTicketsByCode(TICKET_CODE))
-                .thenReturn(Collections.singletonList(ticketModel));
-
-        TicketsModel result = ticketService.getTicketsByCode(TICKET_CODE);
-
-        assertEquals("Ticket should equals() what the mock returned", ticketModel, result);
-    }
-
-    @Test(expected = UnknownIdentifierException.class)
-    public void testGetTicketByCodeNotFound() {
-        when(ticketDAO.findTicketsByCode(TICKET_CODE))
-                .thenReturn(Collections.emptyList());
-
-        ticketService.getTicketsByCode(TICKET_CODE);
     }
 }

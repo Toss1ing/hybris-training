@@ -10,7 +10,6 @@ import de.hybris.platform.core.initialization.SystemSetup;
 import java.io.InputStream;
 
 import org.training.constants.ConcertticketsConstants;
-import org.training.service.ConcertticketsService;
 
 
 @SystemSetup(extension = ConcertticketsConstants.EXTENSIONNAME)

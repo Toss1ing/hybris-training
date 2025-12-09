@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface TicketDAO {
     List<TicketsModel> findAllTickets();
-
-    List<TicketsModel> findTicketsByCode(String code);
 }

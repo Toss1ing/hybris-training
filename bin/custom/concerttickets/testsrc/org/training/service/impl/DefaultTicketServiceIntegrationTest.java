@@ -51,11 +51,6 @@ public class DefaultTicketServiceIntegrationTest extends ServicelayerTest {
         ticketModel.setTicketStatus(TicketStatus.REGULAR);
     }
 
-    @Test(expected = UnknownIdentifierException.class)
-    public void testFailBehavior() {
-        ticketService.getTicketsByCode(TICKET_CODE);
-    }
-
     @Test
     public void testTicketService() {
         List<TicketsModel> tickets = ticketService.getTickets();
@@ -71,10 +66,5 @@ public class DefaultTicketServiceIntegrationTest extends ServicelayerTest {
                 ticketModel,
                 tickets.get(tickets.size() - 1)
         );
-
-        TicketsModel persisted = ticketService.getTicketsByCode(TICKET_CODE);
-
-        assertNotNull("No ticket found", persisted);
-        assertEquals("Different ticket found", ticketModel, persisted);
     }
 }

@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface TicketService {
     List<TicketsModel> getTickets();
-
-    TicketsModel getTicketsByCode(String code);
 }

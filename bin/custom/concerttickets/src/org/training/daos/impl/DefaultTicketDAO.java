@@ -15,13 +15,6 @@ public class DefaultTicketDAO implements TicketDAO {
             "SELECT {t:" + TicketsModel.PK + "} " +
                     "FROM {" + TYPECODE + " AS t}";
 
-    private static final String QUERY_FIND_TICKETS_BY_CODE =
-            "SELECT {t:" + TicketsModel.PK + "} " +
-                    "FROM {" + TYPECODE + " AS t} " +
-                    "WHERE {t:" + TicketsModel.CODE + "} = ?code";
-
-    private static final String PARAM_CODE = "code";
-
     private final FlexibleSearchService flexibleSearchService;
 
     public DefaultTicketDAO(final FlexibleSearchService flexibleSearchService) {
@@ -31,13 +24,6 @@ public class DefaultTicketDAO implements TicketDAO {
     @Override
     public List<TicketsModel> findAllTickets() {
         FlexibleSearchQuery query = new FlexibleSearchQuery(QUERY_FIND_ALL_TICKETS);
-        return flexibleSearchService.<TicketsModel>search(query).getResult();
-    }
-
-    @Override
-    public List<TicketsModel> findTicketsByCode(final String code) {
-        final FlexibleSearchQuery query = new FlexibleSearchQuery(QUERY_FIND_TICKETS_BY_CODE);
-        query.addQueryParameter(PARAM_CODE, code);
         return flexibleSearchService.<TicketsModel>search(query).getResult();
     }
 }

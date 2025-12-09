@@ -3,8 +3,8 @@ package org.training.facades.impl;
 import de.hybris.platform.core.model.product.ProductModel;
 import org.training.data.BandData;
 import org.training.data.TourSummaryData;
-import org.training.enums.MusicType;
 import org.training.facades.BandFacade;
+import org.training.enums.MusicType;
 import org.training.model.BandModel;
 import org.training.service.BandService;
 
@@ -32,6 +32,7 @@ public class DefaultBandFacade implements BandFacade {
             sfd.setName(sm.getName());
             sfd.setDescription(sm.getHistory());
             sfd.setAlbumsSold(sm.getAlbumSales());
+            sfd.setGenres(getGenresForBand(sm));
             bandFacadeData.add(sfd);
         }
         return bandFacadeData;
@@ -42,6 +43,7 @@ public class DefaultBandFacade implements BandFacade {
         if (code == null) {
             throw new IllegalArgumentException(CODE_NULL_EXCEPTION_MESSAGE);
         }
+
         BandModel band = bandService.getBandForCode(code);
         if (band == null) {
             return null;
@@ -49,11 +51,12 @@ public class DefaultBandFacade implements BandFacade {
 
         List<String> genres = new ArrayList<>();
         if (band.getTypes() != null) {
-            for (final MusicType musicType : band.getTypes()) {
+            for (MusicType musicType : band.getTypes()) {
                 genres.add(musicType.getCode());
             }
         }
-        final List<TourSummaryData> tourHistory = new ArrayList<>();
+
+        List<TourSummaryData> tourHistory = new ArrayList<>();
         if (band.getTours() != null) {
             for (final ProductModel tour : band.getTours()) {
                 final TourSummaryData summary = new TourSummaryData();
@@ -63,6 +66,7 @@ public class DefaultBandFacade implements BandFacade {
                 tourHistory.add(summary);
             }
         }
+
         BandData bandData = new BandData();
         bandData.setId(band.getCode());
         bandData.setName(band.getName());
@@ -70,6 +74,18 @@ public class DefaultBandFacade implements BandFacade {
         bandData.setDescription(band.getHistory());
         bandData.setGenres(genres);
         bandData.setTours(tourHistory);
+        bandData.setAlbumSet(band.getAlbumSet());
+        bandData.setSocialMediaLinks(band.getSocialMediaLinks());
         return bandData;
+    }
+
+    private List<String> getGenresForBand(BandModel bandModel) {
+        List<String> genres = new ArrayList<>();
+        if (bandModel.getTypes() != null) {
+            for (MusicType musicType : bandModel.getTypes()) {
+                genres.add(musicType.getCode());
+            }
+        }
+        return genres;
     }
 }
