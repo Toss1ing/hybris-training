@@ -23,7 +23,7 @@
         <constructor-arg ref="ticketDAO"/>
     </bean>
 
-    <alias name="defaultTicketFacade" alias="bandFacade"/>
+    <alias name="defaultTicketFacade" alias="ticketFacade"/>
     <bean id="defaultTicketFacade" class="org.training.facades.impl.DefaultTicketFacade">
         <constructor-arg ref="ticketService"/>
     </bean>

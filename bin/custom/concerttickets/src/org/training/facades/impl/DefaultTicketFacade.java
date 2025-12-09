@@ -5,8 +5,8 @@ import org.training.facades.TicketFacade;
 import org.training.model.TicketsModel;
 import org.training.service.TicketService;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DefaultTicketFacade implements TicketFacade {
 
@@ -19,13 +19,9 @@ public class DefaultTicketFacade implements TicketFacade {
     @Override
     public List<TicketData> getTickets() {
         List<TicketsModel> models = ticketService.getTickets();
-        List<TicketData> result = new ArrayList<>();
-
-        for (TicketsModel model : models) {
-            result.add(mapToTicketData(model));
-        }
-
-        return result;
+        return models.stream()
+                .map(this::mapToTicketData)
+                .collect(Collectors.toList());
     }
 
     private TicketData mapToTicketData(final TicketsModel ticket) {
