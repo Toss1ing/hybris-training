@@ -1,3 +1,31 @@
+$productCatalog = concertToursProductCatalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Online'])[unique = true, default = $productCatalog:Online]
+$supercategories = supercategories(code, $catalogVersion)
+$baseProduct = baseProduct(code, $catalogVersion)
+$approved = approvalstatus(code)[default = 'approved']
+
+INSERT_UPDATE Catalog; id[unique = true]
+                     ; $productCatalog
+
+INSERT_UPDATE CatalogVersion; catalog(id)[unique = true]; version[unique = true]; active; languages(isoCode); readPrincipals(uid)
+                            ; $productCatalog           ; Online                ; true  ; en                ; employeegroup
+
+INSERT_UPDATE Product; code[unique = true]; name                    ; band(code); $supercategories; manufacturerName; manufacturerAID; unit(code); ean; variantType(code); $catalogVersion; $approved
+                     ; 201701             ; The Grand Little x Tour ; B003      ;                 ; x               ; y              ; pieces    ;    ; Concert
+
+INSERT_UPDATE Concert; code[unique = true]; name                  ; date[dateformat = dd.MM.yyyy]; venue                     ; concertType(code); baseProduct(code); $catalogVersion; $approved
+                     ; 20170101           ; Grand Tour - Munich   ; 03.02.2017                   ; "hybris Munich, Germany"  ; openair          ; 201701           ;
+                     ; 20170102           ; Grand Tour - London   ; 21.03.2017                   ; "hybris London, UK"       ; openair          ; 201701           ;
+                     ; 20170103           ; Grand Tour - Montreal ; 15.06.2017                   ; "hybris Montreal, Canada" ; indoor           ; 201701           ;
+                     ; 20170104           ; Grand Tour - Gliwice  ; 04.11.2017                   ; "hybris Gliwice, Poland"  ; indoor           ; 201701           ;
+                     ; 20170105           ; Grand Tour - Boulder  ; 07.01.2018                   ; "hybris Boulder, USA"     ; indoor           ; 201701           ;
+                     ; 20170106           ; Grand Tour - Boston   ; 08.01.2019                   ; "hybris Boston, USA"      ;                  ; 201701           ;
+
+INSERT_UPDATE MusicType; code[unique = true]
+                       ; RAP
+                       ; CLASICALMUSIC
+                       ; ROCK
+
 INSERT_UPDATE BandDetails; code[unique = true]; listeners; topCountryFroSales; rating
                          ; BD001              ; 50000000 ; UK                ; 4
                          ; BD002              ; 30000000 ; UK                ; 5
@@ -7,3 +35,8 @@ INSERT_UPDATE Band; code[unique = true]; name        ; history                  
                   ; B001               ; The Beatles ; Legendary British rock band formed in 1960 ; 600000000 ; BD001            ; FB->https://thebeatlesFaceBook, TW->https://thebeatlesTwitter ; albumName1, albumName2
                   ; B002               ; Queen       ; Iconic British rock band formed in 1970    ; 300000000 ; BD002            ; FB->https://queenFaceBook, IG->https://queenInstagram         ; albumName1, albumName2
                   ; B003               ; 4nWay       ; The best raper in the world                ; 20000     ; BD003            ; FB->https://4nWatFaceBook, TW->https://4nWayTwitter           ; 4nWay, FRIENDS
+
+UPDATE Band; code[unique = true]; types(code)
+           ; B001               ; ROCK
+           ; B002               ; ROCK, CLASICALMUSIC
+           ; B003               ; RAP
