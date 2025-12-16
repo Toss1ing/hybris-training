@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd">
@@ -17,15 +17,33 @@
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
 
-    <bean id="ticketDAO" class="org.training.daos.impl.DefaultTicketDAO" />
+    <bean id="ticketDAO" class="org.training.daos.impl.DefaultTicketDAO"/>
     <alias name="defaultTicketService" alias="ticketService"/>
     <bean id="defaultTicketService" class="org.training.service.impl.DefaultTicketService">
         <constructor-arg ref="ticketDAO"/>
     </bean>
 
+    <bean id="tokenDAO" class="org.training.daos.impl.DefaultTokenDAO"/>
+    <alias name="defaultMyTokenService" alias="myTokenService" />
+    <bean id="defaultMyTokenService" class="org.training.service.impl.DefaultTokenService">
+        <constructor-arg ref="tokenDAO"/>
+        <constructor-arg ref="modelService"/>
+    </bean>
+
     <alias name="defaultTicketFacade" alias="ticketFacade"/>
     <bean id="defaultTicketFacade" class="org.training.facades.impl.DefaultTicketFacade">
         <constructor-arg ref="ticketService"/>
+    </bean>
+
+    <bean id="concertticketEventListener" class="org.training.events.VipTicketEventListener"
+          parent="abstractEventListener">
+        <constructor-arg ref="modelService"/>
+    </bean>
+
+    <bean id="generateTokenJob"
+          class="org.training.jobs.GenerateTokenJob"
+          parent="abstractJobPerformable">
+        <constructor-arg ref="myTokenService"/>
     </bean>
 
 </beans>

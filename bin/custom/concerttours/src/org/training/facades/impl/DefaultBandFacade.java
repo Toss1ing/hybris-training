@@ -3,8 +3,8 @@ package org.training.facades.impl;
 import de.hybris.platform.core.model.product.ProductModel;
 import org.training.data.BandData;
 import org.training.data.TourSummaryData;
-import org.training.facades.BandFacade;
 import org.training.enums.MusicType;
+import org.training.facades.BandFacade;
 import org.training.model.BandModel;
 import org.training.service.BandService;
 
@@ -30,6 +30,7 @@ public class DefaultBandFacade implements BandFacade {
             BandData sfd = new BandData();
             sfd.setId(sm.getCode());
             sfd.setName(sm.getName());
+            sfd.setDescription(sm.getHistory(Locale.ENGLISH));
             sfd.setDescription(sm.getHistory());
             sfd.setAlbumsSold(sm.getAlbumSales());
             sfd.setGenres(getGenresForBand(sm));

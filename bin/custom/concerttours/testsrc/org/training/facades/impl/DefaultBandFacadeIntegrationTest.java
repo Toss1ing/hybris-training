@@ -14,6 +14,7 @@ import org.training.model.BandModel;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
@@ -46,7 +47,7 @@ public class DefaultBandFacadeIntegrationTest extends ServicelayerTransactionalT
         bandModel.setCode(BAND_CODE);
         bandModel.setName(BAND_NAME);
 
-        bandModel.setHistory(BAND_HISTORY);
+        bandModel.setHistory(BAND_HISTORY, Locale.ENGLISH);
         bandModel.setAlbumSales(ALBUMS_SOLD);
     }
 

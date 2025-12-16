@@ -5,7 +5,6 @@
 /roles
 /data/**
 /config/**
-!/config/local.properties
 !/config/localextensions.xml
 /bin/custom/**/gensrc/**
 
