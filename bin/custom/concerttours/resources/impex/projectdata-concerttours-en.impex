@@ -1,0 +1,6 @@
+$lang = en
+
+INSERT_UPDATE Band; code[unique = true]; history[lang = $lang]
+                  ; B001               ; Legendary British rock band formed in 1960
+                  ; B002               ; Iconic British rock band formed in 1970
+                  ; B003               ; The best rapper in the world
