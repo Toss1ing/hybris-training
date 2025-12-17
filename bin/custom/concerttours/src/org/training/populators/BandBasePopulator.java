@@ -8,7 +8,6 @@ import de.hybris.platform.servicelayer.i18n.I18NService;
 import de.hybris.platform.servicelayer.media.MediaService;
 import org.training.data.BandData;
 import org.training.data.TourSummaryData;
-import org.training.enums.MusicType;
 import org.training.model.BandModel;
 
 import java.util.ArrayList;
