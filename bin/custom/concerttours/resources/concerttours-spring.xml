@@ -28,6 +28,7 @@
     <alias name="defaultBandFacade" alias="bandFacade"/>
     <bean id="defaultBandFacade" class="org.training.facades.impl.DefaultBandFacade">
         <constructor-arg ref="bandService"/>
+        <constructor-arg ref="bandConverter"/>
     </bean>
 
     <alias name="defaultTourFacade" alias="tourFacade"/>
@@ -45,13 +46,27 @@
         <constructor-arg ref="modelService"/>
     </bean>
 
-    <bean id="bandAlbumSalesInterceptor" class="org.training.interceptors.BandAlbumSalesInterceptor" />
+    <bean id="bandAlbumSalesInterceptor" class="org.training.interceptors.BandAlbumSalesInterceptor"/>
     <bean id="bandInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
-        <property name="interceptor" ref="bandAlbumSalesInterceptor" />
-        <property name="typeCode" value="Band" />
+        <property name="interceptor" ref="bandAlbumSalesInterceptor"/>
+        <property name="typeCode" value="Band"/>
     </bean>
-    <bean id="bandAlbumSalesEventListener" class="org.training.events.BandAlbumSalesEventListener" parent="abstractEventListener" >
-        <property name="modelService" ref="modelService" />
+    <bean id="bandAlbumSalesEventListener" class="org.training.events.BandAlbumSalesEventListener"
+          parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean id="bandBasePopulator" class="org.training.populators.BandBasePopulator">
+        <constructor-arg ref="i18NService"/>
+        <constructor-arg ref="mediaService"/>
+    </bean>
+
+    <bean id="bandConverter" class="org.training.converters.BandConverter">
+        <property name="populators">
+            <list>
+                <ref bean="bandBasePopulator"/>
+            </list>
+        </property>
     </bean>
 
 </beans>

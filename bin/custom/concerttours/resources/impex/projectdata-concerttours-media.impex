@@ -1,0 +1,25 @@
+$productCatalog = concertoursProductCatalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Online'])[unique = true, default = $productCatalog:Online]
+$medias = medias(code, $catalogVersion)
+$siteResource = jar:org.training.constants.ConcerttoursConstants&/concerttours/bandImages
+
+INSERT_UPDATE Catalog; id[unique = true]
+                     ; $productCatalog
+
+INSERT_UPDATE CatalogVersion; catalog(id)[unique = true]; version[unique = true]; active; languages(isoCode); readPrincipals(uid)
+                            ; $productCatalog           ; Online                ; true  ; en                ; employeegroup
+
+INSERT_UPDATE Media; mediaFormat(qualifier); code[unique = true]; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpeg']; $catalogVersion
+                   ; bandList              ; 4nWaySmall.jpg     ; $siteResource/4nWaySmall.jpg                                                ;                             ;
+                   ; bandDetail            ; 4nWayBig.jpg       ; $siteResource/4nWayBig.jpg                                                  ;                             ;
+                   ; bandList              ; queenSmall.jpg     ; $siteResource/queenSmall.jpg                                                ;                             ;
+                   ; bandDetail            ; queenBig.jpg       ; $siteResource/queenBig.jpg                                                  ;                             ;
+                   ; bandList              ; beatlesSmall.jpg   ; $siteResource/beatlesSmall.jpg                                              ;                             ;
+                   ; bandDetail            ; beatlesBig.jpg     ; $siteResource/beatlesBig.jpg                                                ;                             ;
+
+INSERT_UPDATE MediaContainer; qualifier[unique = true]; $medias                         ; $catalogVersion
+                            ; 4nWayImage              ; 4nWaySmall.jpg,4nWayBig.jpg     ;
+                            ; queenImage              ; queenSmall.jpg,queenBig.jpg     ;
+                            ; beatlesImage            ; beatlesSmall.jpg,beatlesBig.jpg ;
+
+

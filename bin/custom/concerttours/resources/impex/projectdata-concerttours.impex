@@ -40,3 +40,9 @@ UPDATE Band; code[unique = true]; types(code)
            ; B001               ; ROCK
            ; B002               ; ROCK, CLASICALMUSIC
            ; B003               ; RAP
+
+INSERT_UPDATE Band; code[unique = true]; image(qualifier)
+                  ; B001               ; beatlesImage
+                  ; B002               ; queenImage
+                  ; B003               ; 4nWayImage
+
