@@ -4,8 +4,8 @@
 
     <enumtypes>
         <enumtype code="TicketStatus" dynamic="false">
-            <value code="VIP" />
-            <value code="REGULAR" />
+            <value code="VIP"/>
+            <value code="REGULAR"/>
         </enumtype>
     </enumtypes>
 
@@ -15,11 +15,11 @@
             <attributes>
                 <attribute qualifier="code" type="java.lang.String">
                     <description>uniq code for tickets</description>
-                    <persistence type="property" />
+                    <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="concert" type="Concert">
                     <description>concert type</description>
-                    <modifiers read="true" write="true" search="true"/>
+                    <modifiers read="true" write="true" search="true" optional="true"/>
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="price" type="java.lang.Double">
@@ -32,6 +32,32 @@
                 </attribute>
                 <attribute qualifier="ticketStatus" type="TicketStatus">
                     <description>type of ticket</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="VipTicketEvent">
+            <deployment table="VipTicketEvent" typecode="10106"/>
+            <attributes>
+                <attribute qualifier="ticketCode" type="java.lang.String">
+                    <description>Code of VIP ticket</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="concertCode" type="java.lang.String">
+                    <description>Concert code for the ticket</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="eventTime" type="java.util.Date">
+                    <description>Time of VIP ticket creation</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+        <itemtype code="TokenItem">
+            <deployment table="TokenItem" typecode="10107"/>
+            <attributes>
+                <attribute qualifier="token" type="java.lang.String">
                     <persistence type="property"/>
                 </attribute>
             </attributes>

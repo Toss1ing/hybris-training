@@ -11,7 +11,6 @@
 
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Tour Details: ${tour.tourName}</h1>
-
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <h5 class="card-title">${tour.tourName}</h5>
@@ -24,6 +23,8 @@
                             <th>Venue</th>
                             <th>Type</th>
                             <th>Date</th>
+                            <th>Status</th>
+                            <th>Days Until</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,25 @@
                                 <td>${concert.venue}</td>
                                 <td>${concert.type}</td>
                                 <td><fmt:formatDate pattern="dd MMM yyyy" value="${concert.date}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${concert.isPast}">
+                                            <span class="badge bg-secondary">Past</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge bg-success">Upcoming</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+
+                                <td>
+                                    <c:if test="${!concert.isPast}">
+                                        ${concert.daysUntil} days
+                                    </c:if>
+                                    <c:if test="${concert.isPast}">
+                                        none
+                                    </c:if>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

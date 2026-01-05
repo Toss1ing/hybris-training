@@ -15,6 +15,7 @@
     <table class="table table-bordered table-striped align-middle table-sm">
         <thead>
         <tr>
+            <th>Image</th>
             <th>Name</th>
             <th>History</th>
             <th>Albums Sold</th>
@@ -25,6 +26,13 @@
         <tbody>
         <c:forEach var="band" items="${bands}">
             <tr>
+                <td>
+                    <c:if test="${not empty band.smallImageURL}">
+                        <div class="d-flex justify-content-center">
+                            <img src="${band.smallImageURL}" alt="${band.name}" style="width: 50px; height: auto;"/>
+                        </div>
+                    </c:if>
+                </td>
                 <td>
                     <a href="./bands/${band.id}" class="text-decoration-none">
                             ${band.name}

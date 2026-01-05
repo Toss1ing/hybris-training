@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
-    <bean class = "org.training.data.TourSummaryData">
-        <description >Data object for a tour summary which has no equivalent on the type system</description>
-        <property name = "id" type = "String" />
-        <property name = "tourName" type = "String" />
-        <property name = "numberOfConcerts" type = "String" />
+    <bean class="org.training.data.TourSummaryData">
+        <description>Data object for a tour summary which has no equivalent on the type system</description>
+        <property name="id" type="String"/>
+        <property name="tourName" type="String"/>
+        <property name="numberOfConcerts" type="String"/>
     </bean>
-    <bean class = "org.training.data.BandData" >
+    <bean class="org.training.data.BandData">
         <description>Data object representing a Band</description>
-        <property name = "id" type = "String" />
-        <property name = "name" type = "String" />
-        <property name = "description" type = "String" />
-        <property name = "albumsSold" type = "Long" />
-        <property name = "genres" type="java.util.List&lt;String&gt;"/>
-        <property name = "tours" type="java.util.List&lt;org.training.data.TourSummaryData&gt;"/>
+        <property name="id" type="String"/>
+        <property name="name" type="String"/>
+        <property name="description" type="String"/>
+        <property name="albumsSold" type="Long"/>
+        <property name="genres" type="java.util.List&lt;String&gt;"/>
+        <property name="tours" type="java.util.List&lt;org.training.data.TourSummaryData&gt;"/>
         <property name="socialMediaLinks" type="java.util.Map&lt;String, String&gt;"/>
         <property name="albumSet" type="java.util.Set&lt;String&gt;"/>
+        <property name="smallImageURL" type="String"/>
+        <property name="bigImageURL" type="String"/>
     </bean>
-    <bean class = "org.training.data.ConcertSummaryData">
-        <description >Data object for a concert summary</description>
-        <property name = "id" type = "String" />
-        <property name = "date" type = "java.util.Date" />
-        <property name = "venue" type = "String" />
-        <property name = "type" type = "String" />
+    <bean class="org.training.data.ConcertSummaryData">
+        <description>Data object for a concert summary</description>
+        <property name="id" type="String"/>
+        <property name="date" type="java.util.Date"/>
+        <property name="venue" type="String"/>
+        <property name="type" type="String"/>
+        <property name="isPast" type="Boolean"/>
+        <property name="daysUntil" type="Long"/>
     </bean>
-    <bean class = "org.training.data.TourData" >
+    <bean class="org.training.data.TourData">
         <description>Data object representing a tour</description>
-        <property name = "id" type = "String" />
-        <property name = "tourName" type = "String" />
-        <property name = "description" type = "String" />
-        <property name = "concerts" type="java.util.List&lt;org.training.data.ConcertSummaryData&gt;"/>
+        <property name="id" type="String"/>
+        <property name="tourName" type="String"/>
+        <property name="description" type="String"/>
+        <property name="concerts" type="java.util.List&lt;org.training.data.ConcertSummaryData&gt;"/>
     </bean>
 </beans>

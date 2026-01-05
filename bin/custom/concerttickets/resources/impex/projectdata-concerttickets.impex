@@ -5,3 +5,13 @@ INSERT_UPDATE Tickets; code[unique = true]; price ; ticketCount; ticketStatus(co
                      ; T004               ; 120.0 ; 150        ; REGULAR
                      ; T005               ; 180.0 ; 75         ; VIP
                      ; T006               ; 110.0 ; 180        ; REGULAR
+
+INSERT_UPDATE ServicelayerJob; code[unique = true]; SpringId
+                             ; generateTokenJob   ; generateTokenJob
+
+INSERT_UPDATE CronJob; code[unique = true]  ; job(code)        ; singleExecutable; sessionLanguage(isocode)
+                     ; generateTokenCronJob ; generateTokenJob ; false           ; en
+
+INSERT_UPDATE Trigger; cronjob(code)[unique = true]; cronExpression
+#% afterEach: impex.getLastImportedItem().setActivationTime(new Date());
+                     ; generateTokenCronJob        ; 0 0/30 * * * ?
