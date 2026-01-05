@@ -4,8 +4,10 @@ import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.media.MediaContainerModel;
 import de.hybris.platform.core.model.media.MediaFormatModel;
 import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.i18n.I18NService;
 import de.hybris.platform.servicelayer.media.MediaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.training.data.BandData;
 import org.training.data.TourSummaryData;
 import org.training.model.BandModel;
@@ -16,13 +18,20 @@ import java.util.Map;
 
 public class BandBasePopulator implements Populator<BandModel, BandData> {
 
-    private final static String SMALL_IMAGE_ATTRIBUTE = "bandList";
-    private final static String BIG_IMAGE_ATTRIBUTE = "bandDetail";
+    @Value("${media.attribute.small}")
+    private String smallImageAttribute;
+
+    @Value("${media.attribute.big}")
+    private String bigImageAttribute;
 
     private final I18NService i18NService;
     private final MediaService mediaService;
 
-    public BandBasePopulator(I18NService i18NService, MediaService mediaService) {
+    public BandBasePopulator(
+            I18NService i18NService,
+            MediaService mediaService,
+            ConfigurationService configurationService
+    ) {
         this.i18NService = i18NService;
         this.mediaService = mediaService;
     }
@@ -62,8 +71,8 @@ public class BandBasePopulator implements Populator<BandModel, BandData> {
 
         MediaContainerModel container = source.getImage();
         if (container != null) {
-            MediaFormatModel smallFormat = mediaService.getFormat(SMALL_IMAGE_ATTRIBUTE);
-            MediaFormatModel bigFormat = mediaService.getFormat(BIG_IMAGE_ATTRIBUTE);
+            MediaFormatModel smallFormat = mediaService.getFormat(smallImageAttribute);
+            MediaFormatModel bigFormat = mediaService.getFormat(bigImageAttribute);
 
             if (smallFormat != null && mediaService.getMediaByFormat(container, smallFormat) != null) {
                 target.setSmallImageURL(mediaService.getMediaByFormat(container, smallFormat).getDownloadURL());
