@@ -69,6 +69,13 @@
                         </ul>
                     </c:if>
 
+                    <c:if test="${not empty band.producer}">
+                        <p><strong>Producer:</strong></p>
+                        <div>
+                            <a href="/concerttours/producers/${band.producer.id}">${band.producer.name}</a>
+                        </div>
+                    </c:if>
+
                     <a href="../bands" class="btn btn-primary mt-3">Back to Band List</a>
                 </div>
             </div>

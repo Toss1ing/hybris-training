@@ -18,6 +18,7 @@
         <property name="albumSet" type="java.util.Set&lt;String&gt;"/>
         <property name="smallImageURL" type="String"/>
         <property name="bigImageURL" type="String"/>
+        <property name="producer" type="org.training.data.ProducerData"/>
     </bean>
     <bean class="org.training.data.ConcertSummaryData">
         <description>Data object for a concert summary</description>
@@ -34,5 +35,13 @@
         <property name="tourName" type="String"/>
         <property name="description" type="String"/>
         <property name="concerts" type="java.util.List&lt;org.training.data.ConcertSummaryData&gt;"/>
+    </bean>
+    <bean class="org.training.data.ProducerData">
+        <description>Data object representing a tour</description>
+        <property name="id" type="String"/>
+        <property name="name" type="String"/>
+        <property name="experienceYears" type="Integer"/>
+        <property name="country" type="String"/>
+        <property name="bands" type="java.util.List&lt;org.training.data.BandData&gt;"/>
     </bean>
 </beans>

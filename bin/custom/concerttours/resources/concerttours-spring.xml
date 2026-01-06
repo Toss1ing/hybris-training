@@ -19,16 +19,30 @@
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
 
+    <bean id="bandDAO" class="org.training.daos.impl.DefaultBandDAO"/>
+
     <alias name="defaultBandService" alias="bandService"/>
     <bean id="defaultBandService" class="org.training.service.impl.DefaultBandService">
         <constructor-arg ref="bandDAO"/>
     </bean>
-    <bean id="bandDAO" class="org.training.daos.impl.DefaultBandDAO"/>
+
+    <bean id="producerDAO" class="org.training.daos.impl.DefaultProducerDAO">
+        <constructor-arg ref="flexibleSearchService"/>
+    </bean>
+    <bean id="defaultProducerService" class="org.training.service.impl.DefaultProducerService">
+        <constructor-arg ref="producerDAO"/>
+    </bean>
 
     <alias name="defaultBandFacade" alias="bandFacade"/>
     <bean id="defaultBandFacade" class="org.training.facades.impl.DefaultBandFacade">
         <constructor-arg ref="bandService"/>
         <constructor-arg ref="bandConverter"/>
+    </bean>
+
+    <alias name="defaultProducerFacade" alias="producerFacade"/>
+    <bean id="defaultProducerFacade" class="org.training.facades.impl.DefaultProducerFacade">
+        <constructor-arg ref="defaultProducerService"/>
+        <constructor-arg ref="producerBaseConverter"/>
     </bean>
 
     <alias name="defaultTourFacade" alias="tourFacade"/>
@@ -61,10 +75,20 @@
         <constructor-arg ref="mediaService"/>
     </bean>
 
+    <bean id="producerPopulator" class="org.training.populators.ProducerBasePopulator" />
+
     <bean id="bandConverter" class="org.training.converters.BandConverter">
         <property name="populators">
             <list>
                 <ref bean="bandBasePopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="producerBaseConverter" class="org.training.converters.ProducerBaseConverter">
+        <property name="populators">
+            <list>
+                <ref bean="producerPopulator"/>
             </list>
         </property>
     </bean>
