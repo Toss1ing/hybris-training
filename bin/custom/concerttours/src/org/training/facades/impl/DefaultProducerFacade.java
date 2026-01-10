@@ -7,7 +7,6 @@ import org.training.model.ProducerModel;
 import org.training.service.ProducerService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DefaultProducerFacade implements ProducerFacade {
 
@@ -29,7 +28,7 @@ public class DefaultProducerFacade implements ProducerFacade {
         List<ProducerModel> bandModels = producerService.getProducers();
         return bandModels.stream()
                 .map(producerBaseConverter::convert)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
