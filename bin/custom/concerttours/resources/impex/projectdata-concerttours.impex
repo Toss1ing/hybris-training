@@ -46,3 +46,5 @@ INSERT_UPDATE Band; code[unique = true]; image(qualifier)
                   ; B002               ; queenImage
                   ; B003               ; 4nWayImage
 
+INSERT_UPDATE SearchRestriction; code[unique = true]; name[lang = en]    ; restrictedType(code); principal(uid); query                                                                                                                                                              ; active; generate
+                               ; News_Online        ; "Only Online News" ; News                ; anonymous     ; {catalogVersion} IN ({{ SELECT {cv.pk} FROM { CatalogVersion AS cv JOIN Catalog AS c ON {cv.catalog}={c.pk} } WHERE {cv.version}='Online' AND {c.id}='Default' }}) ; true  ; true
