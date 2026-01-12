@@ -46,3 +46,13 @@ INSERT_UPDATE Band; code[unique = true]; image(qualifier)
                   ; B002               ; queenImage
                   ; B003               ; 4nWayImage
 
+INSERT_UPDATE Band; code[unique = true]; producer(code)
+                  ; B001               ; P003
+                  ; B002               ; P002
+                  ; B003               ; P009
+
+INSERT_UPDATE Producer; code[unique = true]; name        ; experienceYears; country
+                      ; P009               ; 4nWAYProd   ; 5              ; Russia
+                      ; P002               ; QueenProd   ; 50             ; Unated Kingdom
+                      ; P003               ; BeatlesProd ; 20             ; German
+
