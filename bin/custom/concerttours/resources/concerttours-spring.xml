@@ -25,10 +25,22 @@
     </bean>
     <bean id="bandDAO" class="org.training.daos.impl.DefaultBandDAO"/>
 
+    <bean id="newsDAO" class="org.training.daos.impl.DefaultNewsDao"/>
+    <alias name="defaultNewsService" alias="newsSerivce"/>
+    <bean id="defaultNewsService" class="org.training.service.impl.DefaultNewsService">
+        <constructor-arg ref="newsDAO"/>
+    </bean>
+
     <alias name="defaultBandFacade" alias="bandFacade"/>
     <bean id="defaultBandFacade" class="org.training.facades.impl.DefaultBandFacade">
         <constructor-arg ref="bandService"/>
         <constructor-arg ref="bandConverter"/>
+    </bean>
+
+    <alias name="defaultNewsFacade" alias="newsFacade"/>
+    <bean id="defaultNewsFacade" class="org.training.facades.impl.DefaultNewsFacade">
+        <constructor-arg ref="newsSerivce"/>
+        <constructor-arg ref="newsConverter"/>
     </bean>
 
     <alias name="defaultTourFacade" alias="tourFacade"/>
@@ -44,6 +56,7 @@
 
     <bean id="concerttourEventListener" class="org.training.events.NewBandEventListener" parent="abstractEventListener">
         <constructor-arg ref="modelService"/>
+        <constructor-arg ref="catalogVersionService"/>
     </bean>
 
     <bean id="bandAlbumSalesInterceptor" class="org.training.interceptors.BandAlbumSalesInterceptor"/>
@@ -69,4 +82,12 @@
         </property>
     </bean>
 
+    <bean id="newsBasePopulator" class="org.training.populators.NewsBasePopulator"/>
+    <bean id="newsConverter" class="org.training.converters.NewsConverter">
+        <property name="populators">
+            <list>
+                <ref bean="newsBasePopulator"/>
+            </list>
+        </property>
+    </bean>
 </beans>
